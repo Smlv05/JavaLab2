@@ -1,4 +1,4 @@
-
+import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
@@ -68,8 +68,36 @@ public class Main {
         System.out.println("TASK 5");
 
         double productCost = 9.99;
-        int VAT = 23;
+        double VAT = 1.23;
 
-        
+        System.out.println("Product cost is " + productCost);
+
+        double grossPrice = productCost * VAT;
+        System.out.println("Price with VAT is " + grossPrice);
+
+        double total = grossPrice * 10000;
+
+        double totalNet = total / VAT;
+
+        System.out.println("Total with VAT: " + total);
+        System.out.println("Total without VAT: " + totalNet);
+
+        System.out.println();
+
+        //WITH BIGDECIMAL
+        BigDecimal price = new BigDecimal("9.99");
+        System.out.println("Price: " + price);
+
+        BigDecimal vatPrice = price.multiply(new BigDecimal(1.23));
+
+        vatPrice = vatPrice.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+        System.out.println("Rounded VAT price: " + vatPrice);
+
+        BigDecimal vatValue = vatPrice.multiply(new BigDecimal(10000));
+        System.out.println("Value with VAT: " + vatValue);
+
+        BigDecimal newPriceWithoutVat = vatValue.divide(new BigDecimal("1.23"), BigDecimal.ROUND_HALF_EVEN);
+        System.out.println("Value without VAT: " + newPriceWithoutVat);
+
     }
 }
